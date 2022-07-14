@@ -15,6 +15,15 @@ const MongoStore = require('connect-mongo')(session);
 
 //scss middleware to convert scss to css
 const sassMiddleware = require('node-sass-middleware');
+
+//middleware for the flash messages
+const  flash = require('connect-flash');
+
+//custom middleware made by us for the flash messages
+const customMware = require('./config/middleware');
+
+
+//middle wares
 app.use(sassMiddleware({
     src: './assets/scss',
     dest: './assets/css',
@@ -23,8 +32,6 @@ app.use(sassMiddleware({
     prefix: '/css'
 }));
 
-
-//middle wares
 app.use(express.urlencoded());
 app.use(cookieParser());
 
@@ -73,6 +80,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash()); //below authentication as it uses its cookies
+app.use(customMware.setFlash);
 
 
 // use express router
