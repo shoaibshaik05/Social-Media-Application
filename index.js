@@ -10,6 +10,12 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 
+//used for encription without cookies
+const passportJWT = require('./config/passport-jwt-strategy');
+
+//social authentication using google
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
 //to store the session and prevent from restarting
 const MongoStore = require('connect-mongo')(session);
 
@@ -32,7 +38,7 @@ app.use(sassMiddleware({
     prefix: '/css'
 }));
 
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 app.use(cookieParser());
 
 
