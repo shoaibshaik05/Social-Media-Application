@@ -39,6 +39,9 @@ app.use(cookieParser());
 //use static(styling)
 app.use(express.static('./assets'));
 
+//make the upload path available to user
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 //use the layout before route as it'll be needing it 
 app.use(expressLayouts);
 
