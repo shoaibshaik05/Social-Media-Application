@@ -1,3 +1,5 @@
+
+
 <li id="post-<%= post._id %>">
     <p>
         <% if (locals.user && locals.user.id == post.user.id){ %>
@@ -21,7 +23,7 @@
                 </a>
             <% }else{ %>
                 <%= post.likes.length %> Likes
-            <% } %>
+            <% } %> 
         </small>
 
     </p>

@@ -15,5 +15,4 @@ router.use('/likes', require('./likes'));
 //use the api in route
 router.use('/api', require('./api'));
 
-
 module.exports = router;

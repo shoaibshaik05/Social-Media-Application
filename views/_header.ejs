@@ -1,35 +1,51 @@
 <header id="layout-header">
 
-    <nav>
-
-        <div class="mini-logo">
-            <p>
-                <a href='/'>
-                    Codeial
-                </a>
-            </p>
+    <nav class="nav">
+        <div class="left-div">
+          <a href="/">
+            <img
+              class="img img-rounded"
+              src="https://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
+              alt="logo"
+            />
+          </a>
         </div>
-    
-        <div class="auth-links">
+  
+        <div class="right-nav">
+          <% if(locals.user){ %>
+          <div class="user">
+            <img
+                class="rounded-circle" id="user-dp"
+                src="<%= user.avatar%>"   
+                alt="<%= user.name%>"
+                />
+            <span><a href="/users/profile/<%= user.id %>"><%= user.name %></a></span>
+          </div>
+          <% } %>
+
+
+          <div class="nav-links">
             <ul>
-                <% if (locals.user){ %>
-                <li>
-                    <a href="/users/profile/<%= user.id %>"><%= user.name %></a>
-                </li>
-                <li>
-                    <a href="/users/sign-out">Sign Out</a>
-                </li>
-                <% }else{ %>
-                <li>
-                    <a href="/users/sign-in">Sign In</a>
-                </li>
-                <li>
-                    <a href="/users/sign-up">Sign Up</a>
-                </li>
-                <% } %>
+              <li>
+                <a href="/">Home |</a>
+              </li>
+              <% if(!locals.user){ %>
+              <li>
+                <a href="/users/sign-up">Sign Up |</a>
+              </li>
+              <% } %> <% if(!locals.user){ %>
+              <li>
+                <a href="/users/sign-in">Sign In</a>
+              </li>
+              <% } %> <% if(locals.user){ %>
+              <li>
+                <a href="/users/sign-out">Sign Out</a>
+              </li>
+              <% } %>
             </ul>
+          </div>
         </div>
-
-    </nav>
+      </nav>
  
 </header>
+

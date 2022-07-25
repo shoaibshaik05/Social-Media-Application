@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/css/sign-up-in.css">
+
+<form method="POST" action='/users/verify-email' class="login-form">
+  <span class="login-signup-header">Verify Account</span>
+  <!-- {/* <% if(false){ %>
+  <div class="alert error-dailog">Error</div>
+  <% } %>
+   */} -->
+  <div class="field">
+    <input type="email" name='email' placeholder="Email" required />
+  </div>
+
+  <div class="field">
+    <button type="submit">Send Mail</button>
+  </div>
+</form>

@@ -1,12 +1,27 @@
-<h1>Sign In</h1>
+<link rel="stylesheet" href="/css/sign-up-in.css">
 
-<form action="/users/create-session" method="POST">
-    <input type="email" name="email" placeholder="Email"  required>
-    <input type="password" name="password" placeholder="Password"  required>
-    <input type="submit" value="Sign In">
-
-</form>
-
-<p>
-    <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>
+<form action="/users/create-session" method="POST" class="login-form">
+    <span class="login-signup-header">Log In</span>
+    <% if(false){ %>
+    <div class="alert error-dailog">Error</div>
+    <% } %>
+    <div class="field">
+      <input name="email" type="email" placeholder="Enter Email" required />
+    </div>
+    <div class="field">
+      <input type="password" name="password" placeholder="Password" required />
+    </div>
+    <div style="align-self: flex-end;margin-top: 1rem;"><a href="/users/auth">Forgot Password ?</a></div>
+    <div class="field">
+      <button type="submit">Log In</button>
+    </div>
+    <div id="google-btn-container">
+      <a class="google-btn" href="/users/auth/google">
+        <div class="google-icon-wrapper">
+          <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+        </div>
+        <p class="btn-text"><b>Sign in with google</b></p>
+      </a>
+      </div>
+  </form>
+  

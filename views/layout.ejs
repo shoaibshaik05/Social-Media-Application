@@ -1,11 +1,14 @@
 <html>
+
     <head>
+
         <title>
             <%= title  %>
         </title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
         <link rel="stylesheet" href="/css/layout.css">
@@ -17,19 +20,6 @@
     </head>
 
     <body>
-        <%- include('_header'); %>
-
-       
-        
-        <main id="layout-main">
-            <%- body %>
-
-        </main>
-
-
-        <%- include('_footer'); %>
-
-        <%- script %>
 
         <script>
             <% if (flash.success && flash.success.length > 0) {%>
@@ -54,6 +44,20 @@
                 }).show();    
             <%} %>
         </script>
-        
+
+         <%- include('_header'); %>
+
+         <main id="layout-main">
+            <%- body %>
+         </main>
+
+         <%- include('_footer'); %>
+
+         <%- script %>
+
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+         <script src="https://kit.fontawesome.com/90f89e9e87.js"crossorigin="anonymous"></script>
+ 
     </body>
+
 </html>

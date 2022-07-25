@@ -16,10 +16,10 @@ module.exports.home = async function(req, res){
                 path: 'user'
             },
             populate: {
-                path: 'likes'
+                path: 'likes' 
             }
         }).populate('likes');
-
+        
         let users = await User.find({});
 
         return res.render('home', {
@@ -32,6 +32,6 @@ module.exports.home = async function(req, res){
         console.log('Error', err);
         return;
     }
-    
+
 }
     
