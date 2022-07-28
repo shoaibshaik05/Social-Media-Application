@@ -1,41 +1,67 @@
 const mongoose = require('mongoose');
+
 const multer = require('multer');
 const path = require('path');
 const AVATAR_PATH = path.join('/uploads/users/avatars');
 
-const userSchema = new mongoose.Schema({
-    email: {
+const userSchema = new mongoose.Schema
+({
+    email:
+    {
         type: String,
         required: true,
         unique: true
     },
-    password: {
+    password:
+    {
         type: String,
         required: true
     },
-    name: {
+    name:
+    {
         type: String,
         required: true
     },
-    avatar: {
+    avatar:
+    {
         type: String
-    }
-}, {
+    },
+    accessToken:
+    {
+        type: String,
+        default: 'abc'
+    },
+    isTokenValid:
+    {
+        type: Boolean,
+        default: false
+    },
+    friends : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "Friendships"
+        }
+    ]
+},
+{
     timestamps: true
 });
 
-let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '..', AVATAR_PATH));
+let storage = multer.diskStorage
+({
+    destination: function(req, file, cb)
+    {
+        cb(null, path.join(__dirname, '..', AVATAR_PATH));
     },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now());
+    filename: function(req, file, cb)
+    {
+        cb(null, file.fieldname + '-' + Date.now());
     }
-  });
+});
 
-  //static methods
-  userSchema.statics.uploadedAvatar = multer({storage: storage}).single('avatar');
-  userSchema.statics.avatarPath = AVATAR_PATH;
+// static methods
+userSchema.statics.uploadedAvatar = multer({storage: storage}).single('avatar');
+userSchema.statics.avatarPath = AVATAR_PATH;
 
 const User = mongoose.model('User', userSchema);
 

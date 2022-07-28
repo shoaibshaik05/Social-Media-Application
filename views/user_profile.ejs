@@ -1,21 +1,91 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 
-<img src="<%= user.avatar%>" alt="<%= user.name%>">
-
-        
-
 <% if(user.id == profile_user.id){ %>
-    <!-- if user matches then show the form -->
-    <form action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
-        <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
-        <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
 
-        <input type="file" name="avatar" placeholder="Profile Picture">
-        <input type="submit"  value="Update">
+    <form id="update-form" action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
+        <div class="settings">
+
+            <div class="img-container">
+              <% if(locals.user.avatar == undefined){ %>
+                <i class="fa-solid fa-user"></i>
+              <% }else{%>
+                <img
+                src="<%= locals.user.avatar %>"
+                alt="user-dp"
+              />
+              <% } %>                        
+            </div>
+                            
+            <div style="display: flex;flex-direction: row;">
+              <input type="file" name="avatar" placeholder="Profile Picture">
+            </div>
+
+            <div class="field">
+              <div class="field-label">Email</div>
+              <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
+            </div>
+                            
+            <div class="field">
+              <div class="field-label">Name</div>
+              <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
+            </div>
+                              
+            <div class="btn-grp">
+                <button type="submit" class="button save-btn">Save</button>
+            </div>
+
+        </div>
     </form>
-            
-<%}else{%>    
-    <!-- else show only the profile info -->
-    <p><%= profile_user.name %></p>
-    <p><%= profile_user.email %></p>
-<%} %>
+ 
+<% }else{ %>
+
+    <div class="settings">
+
+        <div class="img-container">
+            <img
+              src="<%= locals.profile_user.avatar %>"
+              alt="user-dp"
+            />
+        </div>
+                    
+        <div class="field">
+            <div class="field-label">Email</div>
+            <div class="field-value"><%= locals.profile_user.email %></div>
+        </div>
+                    
+        <div class="field">
+            <div class="field-label">Name</div>
+            <div class="field-value"><%= locals.profile_user.name %></div>
+        </div>
+
+        <div class="btn-grp">
+            <% let isFriend = false %>
+            <% for(let friend of locals.populated_user.friends){ %>
+                                 
+              <% if(friend.to_user == profile_user.id || friend.from_user == profile_user.id){ %>
+                <% isFriend = true %>
+              <% } %>
+            <% } %>
+
+            <% if(isFriend){%>
+              <button class="btn save-btn">
+                <a style="color:white;" class="toggle-friend-btn" href="/friends/add-friend/<%= profile_user.id %>">
+                  <!-- Remove Friend -->
+                </a>
+              </button>
+            <% }else{%>
+              <button class="btn save-btn">
+                <a style="color:white;" class="toggle-friend-btn" href="/friends/add-friend/<%= profile_user.id %>">
+                  <!-- Add Friend -->
+                </a>
+              </button>
+            <% } %>
+
+        </div>
+                
+    </div>
+                       
+<% } %>
+
+<script src="js/user_image_preview.js"></script>
+<script src="js/toggle_friend.js"></script>

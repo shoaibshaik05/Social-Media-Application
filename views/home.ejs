@@ -1,42 +1,72 @@
 <link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="/css/chat_box.css">
 
-<div id="home-container">
-    <section id="feed-posts">
-            <h4>Posts</h4>
-            <% if(locals.user){ %>
-            <form action="/posts/create" id="new-post-form" method="POST">
-                <textarea name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
-                <input type="submit" value="Post">
-            </form>
-            <% } %>
-        
-            <div id="posts-list-container">
-                <ul>
-                    <% for(post of posts){ %>
-                        
-                    <%- include('_post') -%>
-                        
-                    <%} %>
-                </ul>
-            </div>
-        </section>
+
+
+
+<div class="home">
+    <div class="feed"> 
+
+      <% if(locals.user){ %>
+      <div class="create-post">
+        <form id="post-form" action="/posts/create" method="POST">
+          <textarea name="content" cols="40" rows="4" placeholder="What's on your mind, <%= locals.user.name%>?" required></textarea>
+          <input id="add-post-btn" type="submit" value="Post" >
+        </form>
+      </div>
+      <% } %>
+      <div id="posts-list-container" class="posts-list">
+        <% for(post of posts) { %>
+            <%- include('_post') -%>
+        <% } %>
+      </div>
+    </div>
 
     
+    <section id="user-friends">
+        <h4>Users</h4>
+
+        <% if(locals.user) { %>
+            <div class="profile">
+                <div class="profile-content">
+                    <% if(user.avatar) { %>
+                        <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
+                    <% } else { %>
+                        <i class="fa-solid fa-user"></i>
+                    <% } %>
+                    <p>
+                        <a href="/users/profile/<%= user.id %>"><%= user.name %></a>
+                    </p>
+                </div>
+        </div>
+
+        <div class="friends-list">
+            <div class="header">
+              <% for(u of all_users) { %>
+                  <p>
+                      <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                  </p>
+              <% } %>
+            </div>
+          </div>
+        <% } %> 
+
+  </section>
+
 </div>
 
-<!-- importing this script for creating the comments -->
+
 <script src="/js/home_post_comments.js" ></script>
 <script src="/js/home_posts.js"></script>
-
-<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
 <script src="js/toggle_likes.js"></script>
+
 <script>
     $('.toggle-like-button').each(function(){
         let self = this;
         let toggleLike = new ToggleLike(self);
     });
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.msgpack.min.js"></script>
 <script src="/js/chat_engine.js"></script>
 <% if (locals.user){ %>

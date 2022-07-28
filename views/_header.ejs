@@ -14,15 +14,22 @@
         <div class="right-nav">
           <% if(locals.user){ %>
           <div class="user">
-            <img
-                class="rounded-circle" id="user-dp"
-                src="<%= user.avatar%>"   
-                alt="<%= user.name%>"
+            <a href="/users/profile/<%= locals.user._id %>">
+      
+              <% if(locals.user.avatar == undefined){ %>
+                <i class="fa-solid fa-user"></i>
+                <% }else{%>
+                  <img
+                  class="rounded-circle" id="user-dp"
+                  src="<%= locals.user.avatar %>"
+                  alt="logo"
                 />
-            <span><a href="/users/profile/<%= user.id %>"><%= user.name %></a></span>
+                <% } %>
+              </a>
+              <span><%= user.name %></span>
           </div>
           <% } %>
-
+  
 
           <div class="nav-links">
             <ul>

@@ -2,7 +2,6 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
