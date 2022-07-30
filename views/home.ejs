@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/css/home.css">
-<link rel="stylesheet" href="/css/chat_box.css">
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
+<link rel="stylesheet" href="<%= assetPath('css/chat_box.css') %>">
 
 
 
@@ -24,7 +24,7 @@
 
     
     <section id="user-friends">
-        <h4>Users</h4>
+        <h4></h4>
 
         <% if(locals.user) { %>
             <div class="profile">
@@ -55,10 +55,10 @@
 
 </div>
 
+<script src="<%= assetPath('js/home_post_comments.js') %>" ></script>
+<script src="<%= assetPath('js/home_posts.js') %>"></script>
+<script src="<%= assetPath('js/toggle_likes.js') %>"></script>
 
-<script src="/js/home_post_comments.js" ></script>
-<script src="/js/home_posts.js"></script>
-<script src="js/toggle_likes.js"></script>
 
 <script>
     $('.toggle-like-button').each(function(){
@@ -68,7 +68,7 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.msgpack.min.js"></script>
-<script src="/js/chat_engine.js"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
 <% if (locals.user){ %>
 <script>
     new ChatEngine('user-chat-box', '<%= locals.user.email %>')

@@ -1,0 +1,71 @@
+li {
+  list-style: none; }
+
+.delete-post-button, .delete-comment-button {
+  color: red;
+  font-size: 0.7rem; }
+
+.delete-post-button:hover, .delete-comment-button:hover {
+  color: darkred;
+  text-decoration: none; }
+
+.post-comments {
+  margin-top: 2vh; }
+
+.list-i {
+  border: 1px solid black; }
+
+.post-av-co {
+  height: 70px;
+  width: 100%; }
+
+.post-avtar {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-left: 20px; }
+
+.post-user-name {
+  font-size: 25px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600; }
+
+.post-content {
+  border: 1px solid 0; }
+
+.post-pic {
+  border-top: 1px solid black;
+  display: flex;
+  width: 100%; }
+
+.pic {
+  width: 100%;
+  margin-top: 10px; }
+
+.lik {
+  height: 30px;
+  width: 30px; }
+
+.form-control {
+  border: 1px solid black;
+  border-bottom-right-radius: 10%;
+  border-top-right-radius: 10%; }
+
+@media screen and (max-width: 600px) {
+  li {
+    width: 100vw;
+    padding: 0;
+    margin: 0; }
+  .list-i {
+    width: 400px; }
+  .post-content {
+    width: 97%; }
+  .form-control {
+    width: 200px; }
+  #new-post-form {
+    width: 400px; }
+  .chat {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%; } }
