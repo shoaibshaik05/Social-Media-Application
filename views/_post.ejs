@@ -34,7 +34,7 @@
     <div class="post-actions">
         <button class="post-like no-btn">
           <%if(locals.user){%>
-            <a class="toggle-like-button" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+            <!-- <a class="toggle-like-button" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post"> -->
           <% let flag = false %>
          
             <% for(let like of post.likes){ %>
